@@ -6,56 +6,101 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class Trigger : MonoBehaviour
 {
-    public GameObject trigger;
-    public GameObject triggerNote;
- 
+    public GameObject[] games = new GameObject[2];
+    public Text text;
+    public GameObject[] Notes = new GameObject[2];
+    public float mindist = 5f;
+    public float dist;
+    public float dist1;
+    bool readingfornote1 = false;
+    bool readingfornote2 = false;
 
-    void Start()
-    {
-        
-    }
-   void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            triggerNote.SetActive(triggerNote);
-            Debug.Log(triggerNote.activeSelf);
-           // Time.timeScale = 0f;
 
-        }
-        
-        // Debug.Log("Entered");
-
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        triggerNote.SetActive(!triggerNote);
-        Debug.Log(triggerNote.activeSelf);
-       // Time.timeScale = 1f;
-    }
     private void Update()
     {
-       // Book();
+       Reading();
+       Print();
+       Reading1();
         
     }
-    void Book() {
-        if (Input.GetKeyDown(KeyCode.Space) )
+    void Reading() {
+        dist = Vector3.Distance(games[0].gameObject.transform.position, gameObject.transform.position);
+       
+        
+        
+        if (dist <= mindist) {
+           
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                text.enabled = false;
+                if (readingfornote1)
+                {
+                    readingfornote1 = false;
+                    Notes[0].SetActive(false);
+                    //text.enabled = false;
+
+                    Debug.Log("Close");
+
+                }
+                else
+                {
+                    readingfornote1 = true;
+                    Notes[0].SetActive(true);
+                  //  text.enabled = false;
+                    Debug.Log("Open");
+                }
+            }
+           
+        }
+        else
         {
-            if (triggerNote.activeSelf == false)
+            readingfornote1 = false;
+          //  text.enabled = true;
+            Notes[0].SetActive(false);
+
+        }
+       
+    }
+    void Reading1() {
+         dist1 = Vector3.Distance(games[1].gameObject.transform.position, gameObject.transform.position);
+        if (dist1 <= mindist)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                triggerNote.SetActive(triggerNote);
-                Debug.Log(triggerNote.activeSelf);
-                Time.timeScale = 0f;
+                if (readingfornote2)
+                {
+                    readingfornote2 = false;
+                    Notes[1].SetActive(false);
+
+                }
+                else
+                {
+                    readingfornote2 = true;
+                    Notes[1].SetActive(true);
+                }
             }
-            else
-            {
-                triggerNote.SetActive(!triggerNote);
-                Debug.Log(triggerNote.activeSelf);
-                Time.timeScale = 1f;
-            }
+
+        }
+        else
+        {
+            readingfornote2 = false;
+            Notes[1].SetActive(false);
+
         }
     }
 
+    void Print() {
+        if (dist <= mindist || dist1 <= mindist)
+        {
+            string txt = "Press E";
+            text.enabled = true;
+            text.text = txt;
+        }
+        else {
+            text.enabled = false;
+        }
+
+    }
 
 }

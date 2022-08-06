@@ -8,15 +8,18 @@ public class Bedroom : MonoBehaviour
     public GameObject Lamp;
     public GameObject system;
     public GameObject Ligth;
-    public Animator animation;
+    
     public GameObject collideR;
-    public AudioSource source;
+    [SerializeField]public AudioSource source = null;
     public Light[] ligths;
     public GameObject[] wallls = new GameObject[2];
     FixedJoint joint;
     Rigidbody rb;
+    [SerializeField] private bool opendoor = false;
+    [SerializeField] private Animator animator = null;
+    //[SerializeField] private AudioSource audioSource = null;
     // Start is called before the first frame update
-     void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         //system = transform.GetComponent<ParticleSystem>();
@@ -41,17 +44,22 @@ public class Bedroom : MonoBehaviour
             rb = Lamp.AddComponent<Rigidbody>();
             system.SetActive(true);
             source.Play();
-            // Instantiate(system, transform.position, Quaternion.identity);
-            // system.transform.position = new Vector3(-0.05560494f, -1.082f, 03999997f);
-            Ligth.SetActive(!Ligth);
+           Ligth.SetActive(!Ligth);
             collideR.SetActive(collideR);
             wallls[0].SetActive(!wallls[0]);
             wallls[1].SetActive(wallls[0]);
             ligths[0].enabled = false;
             ligths[1].enabled = false;
-          
-            animation.SetBool("Play", true);
-            
+            if (opendoor)
+            {
+                animator.Play("doorclsoe", 0, 0.0f);
+               // audioSource.Play();
+                gameObject.SetActive(false);
+
+            }
+
+
+
         }
     }
 
