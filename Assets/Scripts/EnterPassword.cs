@@ -17,6 +17,7 @@ public class EnterPassword : MonoBehaviour
             sources[0].enabled = false;
             sources[1].enabled = false;
             cameraController.enabled = false;
+
             Debug.Log(gameObjects[0].activeSelf);
             Debug.Log(gameObjects[1].activeSelf);
 

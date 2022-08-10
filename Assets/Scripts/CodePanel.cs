@@ -9,6 +9,7 @@ public class CodePanel : MonoBehaviour
     string codeValue = "";
     public GameObject[] doors = new GameObject[2];
     public AudioSource[] sources = new AudioSource[3];
+    public GameObject collider = null;
     
     
     
@@ -31,6 +32,8 @@ public class CodePanel : MonoBehaviour
             gameObject.SetActive(false);
             sources[1].Play();
             sources[2].Stop();
+            collider.SetActive(false);
+
         }
         
         if (codeValue != "1324" && codeValue.Length >= 4) {
