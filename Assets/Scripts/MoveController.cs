@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoveController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class MoveController : MonoBehaviour
     public GameObject flashligth;
     public Transform GetTransform;
     public AudioSource[] audioSources = new AudioSource[2];
+    public Animator animator;
+    public GameObject SettingsPanel;
+    [SerializeField] private bool SettingsBool;
     //public AudioSource source;
 
     // Start is called before the first frame update
@@ -27,6 +31,7 @@ public class MoveController : MonoBehaviour
     {
         Move();
         FlashLigth();
+        Settings();
        
     }
     void Move() {
@@ -36,6 +41,7 @@ public class MoveController : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+      
         
      
     }
@@ -53,8 +59,47 @@ public class MoveController : MonoBehaviour
                 audioSources[1].Play();
             }
         }
-       
-        
-
     }
-}
+        
+        void Bobbing() {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                animator.SetTrigger("bob");
+                animator.ResetTrigger("stop");
+            }
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                animator.SetTrigger("stop");
+                animator.ResetTrigger("bob");
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                animator.SetTrigger("bob");
+                animator.ResetTrigger("stop");
+            }
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                animator.SetTrigger("stop");
+                animator.ResetTrigger("bob");
+            }
+        }
+    void Settings()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (SettingsPanel.activeSelf == false)
+            {
+                SettingsPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
+                Time.timeScale = 0;
+            }
+            else {
+
+                SettingsPanel.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Time.timeScale = 1;
+                }
+        }
+    }
+    }
+
