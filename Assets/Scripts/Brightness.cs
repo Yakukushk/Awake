@@ -44,8 +44,15 @@ public class Brightness : MonoBehaviour
         }
     }
     void Print() {
-        if (mindist >= dist) {
+        if (dist <= mindist)
+        {
+            string txt = "Press E";
+            text.text = txt;
             text.enabled = true;
+        }
+        else
+        {
+            text.enabled = false;
         }
     }
 }

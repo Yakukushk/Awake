@@ -10,9 +10,10 @@ public class CodePanel : MonoBehaviour
     public GameObject[] doors = new GameObject[2];
     public AudioSource[] sources = new AudioSource[3];
     public GameObject collider = null;
-    
-    
-    
+    public CameraController cameraController;
+    public GameObject flashlight = null;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class CodePanel : MonoBehaviour
     {
         text.text = codeValue;
        // text.text = string.Empty;
-        if (codeValue == "1324") {
+        if (codeValue == "1315") {
             doors[0].SetActive(false);
             doors[1].SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
@@ -33,10 +34,16 @@ public class CodePanel : MonoBehaviour
             sources[1].Play();
             sources[2].Stop();
             collider.SetActive(false);
+            sources[0].enabled = true;
+            sources[1].enabled = true;
+            sources[3].enabled = true;
+            sources[4].enabled = true;
+            cameraController.enabled = true;
+            flashlight.SetActive(true);
 
         }
         
-        if (codeValue != "1324" && codeValue.Length >= 4) {
+        if (codeValue != "1315" && codeValue.Length >= 4) {
             sources[0].Play();
         }
         if (codeValue.Length >= 4) {
