@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float mouseSensentive = 50f;
+    public float mouseSensentive = 30f;
     public float RotationX = 0f;
     public Transform transForm;
     // Start is called before the first frame update

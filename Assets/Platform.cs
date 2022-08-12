@@ -6,6 +6,7 @@ public class Platform : MonoBehaviour
 {
     public AudioSource[] sources = new AudioSource[2];
     public GameObject platform;
+    public BobbingScence bobbingScence;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,7 @@ public class Platform : MonoBehaviour
             platform.SetActive(!platform);
             sources[0].Play();
             sources[1].Play();
+            bobbingScence.enabled = false;
         }
     }
 }

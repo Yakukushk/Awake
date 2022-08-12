@@ -91,12 +91,18 @@ public class MoveController : MonoBehaviour
             {
                 SettingsPanel.SetActive(true);
                 Cursor.lockState = CursorLockMode.Confined;
+                audioSources[0].enabled = false;
+                audioSources[1].enabled = false;
+
                 Time.timeScale = 0;
             }
             else {
 
                 SettingsPanel.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
+                audioSources[0].enabled = true;
+                audioSources[1].enabled = true;
+
                 Time.timeScale = 1;
                 }
         }
