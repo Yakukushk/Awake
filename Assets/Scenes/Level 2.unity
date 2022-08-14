@@ -29313,7 +29313,7 @@ MonoBehaviour:
   panel: {fileID: 260705744}
   book: {fileID: 128605591}
   dist: 0
-  mindist: 2
+  mindist: 5
   text: {fileID: 982361085}
 --- !u!114 &1423252722
 MonoBehaviour:
