@@ -23,7 +23,7 @@ public class MoveController : MonoBehaviour
     {
         GetTransform = gameObject.transform;
         GetTransform = GetComponent<Transform>();
-        GetTransform.localScale = new Vector3(2f, 2f, 2f);
+      //  GetTransform.localScale = new Vector3(2f, 2f, 2f);
     }
 
     // Update is called once per frame
