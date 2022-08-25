@@ -6,6 +6,7 @@ public class GardenScript : MonoBehaviour
 {
     public Light[] lights;
     public GameObject terrain;
+    public GameObject Eye;
     public GameObject wall;
     bool isEnter = false;
     public Light DirectionLight;
@@ -29,8 +30,9 @@ public class GardenScript : MonoBehaviour
                     lights[i].enabled = true;
                 }
                 terrain.SetActive(false);
+                Eye.SetActive(false);
                 wall.SetActive(true);
-                DirectionLight.intensity = 0.5988619f;
+              //  DirectionLight.intensity = 0.5988619f;
             }
         }
         else {
