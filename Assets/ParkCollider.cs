@@ -29,19 +29,9 @@ public class ParkCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") {
-            if (IsEnter_)
-            {
-                Action[0].SetActive(true);
-                Action[1].SetActive(false);
-                lightArea.SetActive(true);
-            }
-            else {
-                Action[0].SetActive(false);
-                Action[1].SetActive(true);
-                lightArea.SetActive(false);
-            }
-        }
+        Action[0].SetActive(true);
+        Action[1].SetActive(false);
+        lightArea.SetActive(true);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -64,6 +54,23 @@ public class ParkCollider : MonoBehaviour
         if (other.tag == "Player") {
             if (volume.profile.TryGet(out filmGrain)) {
                 filmGrain.intensity.value = 0f;
+            }
+            if (other.tag == "Player")
+            {
+                if (IsEnter_)
+                {
+                    Action[0].SetActive(true);
+                    Action[1].SetActive(false);
+                    Action[2].SetActive(false);
+                    lightArea.SetActive(true);
+                }
+                else
+                {
+                    Action[0].SetActive(false);
+                    Action[1].SetActive(true);
+                    Action[2].SetActive(true);
+                    lightArea.SetActive(false);
+                }
             }
             gameObject.SetActive(false);
             collider.SetActive(true);

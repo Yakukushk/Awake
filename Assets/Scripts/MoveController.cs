@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MoveController : MonoBehaviour
 {
-    float speed = 5f;
+    public float speed = 5f;
     float fastspeed = 10f;
     public CharacterController controller;
     float gravity = -9.81f;
